@@ -14,8 +14,8 @@ var percent = 0
 //   loopback: true,  // receive our own mdns messages
 //   noInit: true     // do not initialize on creation
 // })
-
-coap.setSecurityParams('coaps://192.168.0.17:5684',
+const gatewayUrl = 'coaps://192.168.0.17:5684'
+coap.setSecurityParams(gatewayUrl,
   {
     psk: {
       'IDENTITY': process.env.PSK
@@ -24,7 +24,7 @@ coap.setSecurityParams('coaps://192.168.0.17:5684',
 );
 coap
   .request(
-    'coaps://192.168.0.17:5684/15001/65537',
+     gatewayUrl + '/15001/65537',
     'get'
   )
   .then(response => {
@@ -36,7 +36,7 @@ coap
 function sendPut(payload) {
   coap
     .request(
-      'coaps://192.168.0.17:5684/15001/65537',
+       gatewayUrl + '/15001/65537',
       'put',
       Buffer.from(JSON.stringify(payload))
     )
