@@ -33,7 +33,4 @@ class Tradfri {
   }
 }
 
-// const gatewayUrl = 'coaps://192.168.0.17:5684'
-
-
 module.exports.Tradfri = Tradfri;

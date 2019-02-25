@@ -8,9 +8,17 @@ function start(gatewayUrl) {
 
   const client = new Tradfri(gatewayUrl);
   function drawProgress() {
-    clear()
+    clear();
 
     var blankLine = new Line().fill().output();
+
+    var headline = new Line()
+      .padding(2)
+      .column("Connected to GW: " + gatewayUrl)
+      .fill()
+      .output();
+    
+    blankLine.output();
 
     var headers = new Line()
       .padding(2)
@@ -27,7 +35,7 @@ function start(gatewayUrl) {
       .column('Bulb 1', 20, [clc.yellow])
       .column(thisPercentBar.update(client.percent), 40)
       .fill()
-      .output()
+      .output();
 
     blankLine.output();
   }
