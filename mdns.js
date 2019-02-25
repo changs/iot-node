@@ -1,7 +1,6 @@
-import { createBrowser } from 'mdns-js';
-
+var mdns = require('mdns-js'); 
 function discoverGateway() {
-  var browser = createBrowser();
+  var browser = mdns.createBrowser();
   return new Promise((resolve, reject) => {
     const mdnsTimeout = 3000;
     browser.on('update', function (data) {
