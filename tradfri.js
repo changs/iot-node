@@ -40,14 +40,14 @@ function start(gatewayUrl) {
       );
   }
   function drawProgress() {
-    // clear()
+    clear()
 
     var blankLine = new Line().fill().output();
 
     var headers = new Line()
       .padding(2)
-      .column('Item', 20, [clc.cyan])
-      .column('Progress', 40, [clc.cyan])
+      .column('Bulb', 20, [clc.cyan])
+      .column('Brightness', 40, [clc.cyan])
       .fill()
       .output();
 
@@ -56,7 +56,7 @@ function start(gatewayUrl) {
     var thisPercentBar = new Progress(20);
     var percentLine = new Line()
       .padding(2)
-      .column('Item %', 20, [clc.yellow])
+      .column('Bulb 1', 20, [clc.yellow])
       .column(thisPercentBar.update(percent), 40)
       .fill()
       .output()
@@ -98,16 +98,8 @@ function start(gatewayUrl) {
         };
         sendPut(payload);
         break;
-      case 'left':
-        console.log(percent);
-        break;
-      case 'right':
-        console.log('right');
-        break;
     }
   });
-
-  console.log('...');
 }
 
 module,exports.start = start;
