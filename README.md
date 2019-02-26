@@ -1,1 +1,1 @@
-A simple terminal user interface to control IKEA TRADFRI bulbs through the gateway.
+A simple terminal user interface for controling IKEA TRADFRI bulbs through the gateway.
