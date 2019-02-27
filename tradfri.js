@@ -5,8 +5,8 @@ class Tradfri {
   constructor(gatewayUrl) {
     coap.setSecurityParams(gatewayUrl, {
       psk: {
-        'IDENTITY': process.env.PSK
-      }
+        IDENTITY: process.env.PSK,
+      },
     });
     this.gatewayUrl = gatewayUrl;
     this.percent = this.getBrightness();
@@ -14,22 +14,21 @@ class Tradfri {
 
   getBrightness() {
     coap.request(
-      this.gatewayUrl + '/15001/65537',
-      'get'
-    ).then(response => {
+      `${this.gatewayUrl}/15001/65537`,
+      'get',
+    ).then((response) => {
       this.percent = JSON.parse(response.payload.toString())['3311'][0]['5851'] / 254;
-    }).catch(err => { console.log('ERROR'); }
-    );
+    }).catch((err) => { console.log(err); });
   }
+
   sendPut(payload) {
     coap
       .request(
-        this.gatewayUrl + '/15001/65537',
+        `${this.gatewayUrl}/15001/65537`,
         'put',
-        Buffer.from(JSON.stringify(payload))
+        Buffer.from(JSON.stringify(payload)),
       )
-      .catch(err => { console.log('ERROR'); }
-      );
+      .catch((err) => { console.log(err); });
   }
 }
 

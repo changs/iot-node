@@ -1,8 +1,9 @@
-const discoverGateway = require('./mdns').discoverGateway
+const { discoverGateway } = require('./mdns');
+const { tui } = require('./tui');
+
 async function init() {
-  const urlR = discoverGateway().then(r => r);
-  const url = await urlR;
-  require('./tui').start("coaps://" + url.gatewayUrl);
+  const url = await discoverGateway();
+  tui(`coaps://${url.gatewayUrl}`);
 }
 
 init();

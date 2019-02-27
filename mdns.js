@@ -1,21 +1,21 @@
-var mdns = require('mdns-js'); 
+const mdns = require('mdns-js');
+
 function discoverGateway() {
-  var browser = mdns.createBrowser();
+  const browser = mdns.createBrowser();
   return new Promise((resolve, reject) => {
-    const mdnsTimeout = 3000;
-    browser.on('update', function (data) {
-      if (data.hasOwnProperty('fullname')) {
+    browser.on('update', (data) => {
+      if ('fullname' in data) {
         browser.stop();
-        const gatewayUrl = data.addresses[0] + ':5684'
+        const gatewayUrl = `${data.addresses[0]}:5684`;
         resolve({
-          gatewayUrl
+          gatewayUrl,
         });
       }
     });
-    browser.on('ready', function () {
+    browser.on('ready', () => {
       browser.discover();
     });
-  })
+  });
 }
 
 module.exports.discoverGateway = discoverGateway;
