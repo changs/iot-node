@@ -3,13 +3,12 @@ const clc = require('cli-color');
 const readline = require('readline');
 const { Tradfri } = require('./tradfri');
 
-const clear = CLI.Clear;
 const { Line, Progress } = CLI;
 
 function start(gatewayUrl) {
   const client = new Tradfri(gatewayUrl);
   function drawProgress() {
-    clear();
+    CLI.Clear();
 
     const blankLine = new Line().fill().output();
 
