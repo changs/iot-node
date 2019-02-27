@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cli-color": "^1.4.0",
     "clui": "^0.3.6",
     "dotenv": "^6.2.0",
     "mdns-js": "^1.0.3",
